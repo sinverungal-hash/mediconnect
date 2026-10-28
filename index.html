@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#15558a" />
+  <meta name="description" content="MEDICONNECT — healthcare appointment booking demo." />
+  <title>MEDICONNECT | Your Health, Our Priority</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#home" aria-label="MEDICONNECT home">
+        <span class="brand-mark">✚</span><span>MEDI<span class="brand-accent">CONNECT</span></span>
+      </a>
+      <div class="sidebar-caption">MAIN MENU</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <a href="#home" data-nav="home"><span>⌂</span> Home</a>
+        <a href="#doctors" data-nav="doctors"><span>⚕</span> Find Doctor</a>
+        <a href="#appointments" data-nav="appointments"><span>▣</span> Appointments <span class="nav-count"
+            id="appointment-count">0</span></a>
+        <a href="#records" data-nav="records"><span>▤</span> Health Records</a>
+        <a href="#articles" data-nav="articles"><span>▧</span> Health Articles</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <div class="help-icon">♡</div><strong>Need a little help?</strong>
+          <p>We're here to support your health journey.</p><button class="btn btn-light btn-small" data-go="profile">Get
+            support</button>
+        </div>
+        <a href="#profile" class="profile-mini" data-nav="profile">
+          <div class="avatar avatar-small" id="nav-avatar">NS</div>
+          <div><strong id="nav-user-name">Sin</strong><small>Patient account</small></div><span class="dots">•••</span>
+        </a>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu icon-button" id="mobile-menu" aria-label="Toggle menu">☰</button>
+        <div class="breadcrumb"><span>Pages</span><span class="crumb-sep">/</span><strong id="page-label">Home</strong>
+        </div>
+        <div class="topbar-actions">
+          <div class="location-pill"><span class="pin">⌖</span><span>Kuttippuram, Kerala</span></div>
+          <button class="icon-button notification-button" id="notifications-button"
+            aria-label="Notifications">♧<i></i></button>
+          <button class="avatar" id="top-avatar" data-go="profile" aria-label="Open profile">NS</button>
+        </div>
+      </header>
+
+      <section class="page active" id="page-home">
+        <div class="welcome-banner">
+          <div class="welcome-copy">
+            <span class="eyebrow">YOUR HEALTH, OUR PRIORITY</span>
+            <h1>Good morning, <span id="home-greeting-name">Sin</span> <span class="wave">✦</span></h1>
+            <p>Take care of your health. It's the best investment you can make.</p>
+            <button class="btn btn-primary" data-go="doctors">Find a doctor <span>→</span></button>
+          </div>
+          <div class="banner-art" aria-hidden="true">
+            <div class="art-circle circle-one"></div>
+            <div class="art-circle circle-two"></div>
+            <div class="doctor-illustration"><span class="doctor-head"></span><span class="doctor-body"></span><span
+                class="doctor-coat"></span><span class="stethoscope">⌁</span></div>
+            <div class="floating-cross">✚</div>
+            <div class="floating-heart">♡</div>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div><span class="eyebrow">QUICK ACCESS</span>
+            <h2>How can we help you today?</h2>
+          </div><span class="muted small">Everything you need, in one place</span>
+        </div>
+        <div class="quick-grid">
+          <button class="quick-card" data-go="doctors"><span class="quick-icon blue">⚕</span><strong>Find
+              Doctor</strong><small>Explore specialists</small><span class="card-arrow">↗</span></button>
+          <button class="quick-card" data-go="appointments"><span
+              class="quick-icon mint">▣</span><strong>Appointments</strong><small>Manage your visits</small><span
+              class="card-arrow">↗</span></button>
+          <button class="quick-card" data-go="records"><span class="quick-icon lilac">▤</span><strong>Health
+              Records</strong><small>Your medical files</small><span class="card-arrow">↗</span></button>
+          <button class="quick-card" data-go="articles"><span class="quick-icon peach">▧</span><strong>Health
+              Articles</strong><small>Tips for better living</small><span class="card-arrow">↗</span></button>
+        </div>
+
+        <div class="section-heading section-heading-tight">
+          <div><span class="eyebrow">RECOMMENDED FOR YOU</span>
+            <h2>Popular doctors</h2>
+          </div><button class="text-link" data-go="doctors">View all doctors →</button>
+        </div>
+        <div class="doctor-grid" id="home-doctors"></div>
+        <div class="notice-bar"><span class="notice-icon">✦</span>
+          <div><strong>Small steps make a healthier you.</strong>
+            <p>Explore trusted health tips and take charge of your wellbeing.</p>
+          </div><button class="text-link" data-go="articles">Explore articles →</button>
+        </div>
+      </section>
+
+      <section class="page" id="page-doctors">
+        <div class="page-intro"><span class="eyebrow">CARE THAT FITS YOU</span>
+          <h1>Find your doctor</h1>
+          <p>Connect with qualified healthcare professionals for your needs.</p>
+        </div>
+        <div class="search-row"><label class="search-box"><span>⌕</span><input id="doctor-search" type="search"
+              placeholder="Search doctor, specialty or hospital..." /></label><button class="btn btn-primary"
+            id="search-button">Search</button></div>
+        <div class="filter-row" id="specialty-filters">
+          <button class="filter-chip selected" data-specialty="All">All specialists</button>
+          <button class="filter-chip" data-specialty="General Physician">General Physician</button>
+          <button class="filter-chip" data-specialty="Cardiologist">Cardiologist</button>
+          <button class="filter-chip" data-specialty="Dermatologist">Dermatologist</button>
+          <button class="filter-chip" data-specialty="Pediatrician">Pediatrician</button>
+          <button class="filter-chip" data-specialty="Saved">♥ Saved Doctors</button>
+        </div>
+        <div class="section-heading">
+          <div>
+            <h2>Available specialists</h2>
+            <p class="muted small" id="doctor-result-count">Showing doctors</p>
+          </div><select class="select-control" id="sort-doctors" aria-label="Sort doctors">
+            <option value="recommended">Recommended</option>
+            <option value="rating">Highest rated</option>
+            <option value="name">Name A–Z</option>
+          </select>
+        </div>
+        <div class="doctor-grid doctor-grid-full" id="doctor-list"></div>
+        <div class="empty-state hidden" id="doctor-empty"><span>⌕</span>
+          <h3>No doctors found</h3>
+          <p>Try another name or specialty.</p><button class="btn btn-outline" id="clear-search">Clear filters</button>
+        </div>
+      </section>
+
+      <section class="page" id="page-profile">
+        <div class="page-intro"><span class="eyebrow">YOUR ACCOUNT</span>
+          <h1>My profile</h1>
+          <p>Manage your personal details and healthcare preferences.</p>
+        </div>
+        <div class="profile-layout">
+          <div class="profile-card card">
+            <div class="profile-cover"></div>
+            <div class="profile-avatar avatar" id="profile-card-avatar">NS</div>
+            <h2 id="profile-card-name">Sin</h2>
+            <p class="muted" id="profile-card-email">Patient account · Demo profile</p>
+            <div class="profile-stats">
+              <div><strong id="profile-appointment-count">0</strong><small>Appointments</small></div>
+              <div><strong id="profile-record-count">3</strong><small>Health records</small></div>
+              <div><strong id="profile-doctor-count">0</strong><small>Saved doctors</small></div>
+            </div><button class="btn btn-outline full-width" id="edit-profile">Edit profile</button>
+          </div>
+          <div class="settings-card card"><span class="eyebrow">ACCOUNT SETTINGS</span>
+            <h2>Personal preferences</h2><button class="settings-row" id="profile-details"><span
+                class="settings-icon">♙</span><span><strong>Personal information</strong><small>Update your contact
+                  details</small></span><b>›</b></button><button class="settings-row" data-go="appointments"><span
+                class="settings-icon">▣</span><span><strong>My appointments</strong><small>View upcoming
+                  visits</small></span><b>›</b></button><button class="settings-row" data-go="records"><span
+                class="settings-icon">▤</span><span><strong>Health records</strong><small>Reports and
+                  prescriptions</small></span><b>›</b></button><button class="settings-row"
+              id="notification-settings"><span
+                class="settings-icon">♧</span><span><strong>Notifications</strong><small>Manage demo
+                  notifications</small></span><b>›</b></button><button class="settings-row" id="support-button"><span
+                class="settings-icon">♡</span><span><strong>Help & support</strong><small>Information about this
+                  demo</small></span><b>›</b></button>
+            <div class="privacy-note">🔒 Your information stays in this browser demo. Do not enter real medical or
+              sensitive personal data.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-appointments">
+        <div class="page-intro"><span class="eyebrow">YOUR CARE PLAN</span>
+          <h1>My appointments</h1>
+          <p>Keep track of your scheduled consultations.</p>
+        </div>
+        <div class="tabs" id="appointment-tabs"><button class="tab active" data-tab="upcoming">Upcoming <span
+              id="upcoming-tab-count">0</span></button><button class="tab" data-tab="past">Past appointments</button>
+        </div>
+        <div class="appointment-list" id="appointment-list"></div>
+        <div class="empty-state hidden" id="appointment-empty"><span>▣</span>
+          <h3>No appointments here yet</h3>
+          <p>Find a doctor and book your first demo appointment.</p><button class="btn btn-primary"
+            data-go="doctors">Find a doctor</button>
+        </div>
+      </section>
+
+      <section class="page" id="page-doctor-profile">
+        <button class="back-link" data-go="doctors">← Back to doctors</button>
+        <div id="doctor-profile-content"></div>
+      </section>
+
+      <section class="page" id="page-booking">
+        <button class="back-link" data-go="doctor-profile">← Back to doctor profile</button>
+        <div class="page-intro"><span class="eyebrow">SCHEDULE YOUR VISIT</span>
+          <h1>Book an appointment</h1>
+          <p>Choose a date and time that works for you.</p>
+        </div>
+        <div class="booking-layout">
+          <div class="booking-main card">
+            <div class="step-label"><span>1</span>
+              <div><strong>Select date</strong><small>Choose your preferred day</small></div>
+            </div>
+            <div class="date-grid" id="date-grid"></div>
+            <div class="step-label step-gap"><span>2</span>
+              <div><strong>Available time slots</strong><small>All times are shown in India Standard Time</small></div>
+            </div>
+            <div class="time-grid" id="time-grid"></div>
+            <div class="step-label step-gap"><span>3</span>
+              <div><strong>Consultation type</strong><small>Choose how you'd like to consult</small></div>
+            </div>
+            <div class="consult-options"><label class="consult-option selected"><input type="radio" name="consult"
+                  value="In-person" checked><span>♧</span>
+                <div><strong>In-person</strong><small>Visit the clinic</small></div>
+              </label><label class="consult-option"><input type="radio" name="consult" value="Video call"><span>▣</span>
+                <div><strong>Video call</strong><small>Online consultation demo</small></div>
+              </label></div>
+            <label class="field-label" for="booking-reason">Reason for visit <span
+                class="muted">(optional)</span></label><textarea id="booking-reason" rows="3"
+              placeholder="Briefly describe what you'd like to discuss..."></textarea>
+            <div class="form-error hidden" id="booking-error"></div>
+          </div>
+          <aside class="booking-summary card"><span class="eyebrow">APPOINTMENT SUMMARY</span>
+            <div id="booking-doctor-summary"></div>
+            <div class="summary-line"><span>Appointment date</span><strong id="summary-date">Select a date</strong>
+            </div>
+            <div class="summary-line"><span>Time</span><strong id="summary-time">Select a time</strong></div>
+            <div class="summary-line"><span>Consultation</span><strong id="summary-consult">In-person</strong></div>
+            <div class="summary-line"><span>Consultation fee</span><strong id="summary-fee">₹500</strong></div>
+            <div class="summary-total"><span>Total (demo)</span><strong id="summary-total">₹500</strong></div><button
+              class="btn btn-primary full-width" id="confirm-booking">Confirm appointment <span>→</span></button>
+            <p class="fine-print">Demo only — no real hospital booking or payment is made.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="page" id="page-records">
+        <div class="page-intro"><span class="eyebrow">YOUR HEALTH, ORGANIZED</span>
+          <h1>Health records</h1>
+          <p>Keep your reports and health information in one convenient place.</p>
+        </div>
+        <div class="record-summary-grid">
+          <div class="record-summary card"><span class="record-icon blue">▤</span>
+            <div><strong id="record-summary-count">3</strong><small>Available records</small></div>
+          </div>
+          <div class="record-summary card"><span class="record-icon mint">✓</span>
+            <div><strong>Updated</strong><small>Demo records</small></div>
+          </div>
+          <div class="record-summary card"><span class="record-icon lilac">♧</span>
+            <div><strong>Private</strong><small>Browser demonstration</small></div>
+          </div>
+        </div>
+        <div class="tabs" id="record-tabs"><button class="tab active" data-record-tab="All">All records</button><button
+            class="tab" data-record-tab="Reports">Reports</button><button class="tab"
+            data-record-tab="Prescriptions">Prescriptions</button><button class="tab" data-record-tab="History">Medical
+            history</button></div>
+        <div class="record-list" id="record-list"></div>
+        <div class="privacy-banner"><span>🔒</span>
+          <div><strong>Your health information deserves care.</strong>
+            <p>This project uses sample data only. It is not a secure medical-record system.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="page-articles">
+        <div class="page-intro"><span class="eyebrow">LEARN & FEEL BETTER</span>
+          <h1>Health articles</h1>
+          <p>Small, practical ideas to support your everyday wellbeing.</p>
+        </div>
+        <label class="search-box article-search"><span>⌕</span><input id="article-search" type="search"
+            placeholder="Search health articles..." /></label>
+        <div class="filter-row" id="article-filters"><button class="filter-chip selected" data-category="All">All
+            topics</button><button class="filter-chip" data-category="Nutrition">Nutrition</button><button
+            class="filter-chip" data-category="Fitness">Fitness</button><button class="filter-chip"
+            data-category="Wellbeing">Wellbeing</button></div>
+        <div class="article-grid" id="article-grid"></div>
+        <div class="empty-state hidden" id="article-empty">
+          <h3>No articles found</h3>
+          <p>Try another search or topic.</p>
+        </div>
+        <p class="fine-print article-disclaimer">General educational content for this student project, not a substitute
+          for professional medical advice.</p>
+      </section>
+
+      <footer class="footer"><span>© 2026 MEDICONNECT · Student project demo</span><span>Made for healthier days
+          <b>♡</b></span></footer>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop hidden" id="modal-backdrop">
+    <div class="modal card" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close"
+        id="modal-close" aria-label="Close">×</button>
+      <div class="modal-symbol" id="modal-symbol">✓</div>
+      <h2 id="modal-title">All set!</h2>
+      <div id="modal-message"></div>
+      <div id="modal-extra"></div><button class="btn btn-primary full-width" id="modal-action">Continue</button>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+
+</html>
